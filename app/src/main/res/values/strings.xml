@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">红色党建</string>
+    <string name="username">心中有党</string>
+    <string name="nav_main">首页</string>
+    <string name="nav_message">消息</string>
+    <string name="nav_friend">朋友圈</string>
+    <string name="menu_night_mode">白天模式</string>
+    <string name="menu_night_mode_system">跟随系统</string>
+    <string name="menu_night_mode_day">白天</string>
+    <string name="menu_night_mode_night">黑夜</string>
+    <string name="menu_night_mode_auto">自动</string>
+</resources>

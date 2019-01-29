@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/nav_home_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/nav_main"
+            android:title="@string/nav_main" />
+    </group>
+    <group
+        android:id="@+id/nav_message_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_messages"
+            android:icon="@drawable/nav_message"
+            android:title="@string/nav_message" />
+    </group>
+    <group
+        android:id="@+id/nav_friends_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_friends"
+            android:icon="@drawable/nav_friend"
+            android:title="@string/nav_friend" />
+    </group>
+</menu>
