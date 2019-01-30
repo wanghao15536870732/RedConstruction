@@ -9,4 +9,6 @@
     <string name="menu_night_mode_day">白天</string>
     <string name="menu_night_mode_night">黑夜</string>
     <string name="menu_night_mode_auto">自动</string>
+    <string name="navigation_drawer_open">打开</string>
+    <string name="navigation_drawer_close">关闭</string>
 </resources>
