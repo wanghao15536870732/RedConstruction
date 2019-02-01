@@ -1,11 +1,15 @@
-package com.example.zhongahiyi.redconstruction;
+package com.example.zhongahiyi.redconstruction.adapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import java.text.SimpleDateFormat;
+import com.example.zhongahiyi.redconstruction.view.fragment.SimpleFragment2;
+import com.example.zhongahiyi.redconstruction.view.fragment.SimpleFragment3;
+import com.example.zhongahiyi.redconstruction.view.fragment.SimpleFragment4;
+import com.example.zhongahiyi.redconstruction.view.fragment.SimpleFragment5;
+import com.example.zhongahiyi.redconstruction.view.fragment.TimeTableFragment;
 
 
 public class PageAdapter extends FragmentPagerAdapter {
@@ -22,7 +26,7 @@ public class PageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return SimpleFragment1.newInstance();
+                return TimeTableFragment.newInstance();
             case 1:
                 return SimpleFragment2.newInstance();
             case 2:

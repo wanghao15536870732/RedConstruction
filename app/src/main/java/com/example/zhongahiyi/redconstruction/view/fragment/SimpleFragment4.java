@@ -1,4 +1,4 @@
-package com.example.zhongahiyi.redconstruction;
+package com.example.zhongahiyi.redconstruction.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,13 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class SimpleFragment2 extends Fragment{
+import com.example.zhongahiyi.redconstruction.R;
+
+public class SimpleFragment4 extends Fragment{
 
     private TextView mTextView;
 
-    public static SimpleFragment2 newInstance(){
+    public static SimpleFragment4 newInstance(){
         Bundle args = new Bundle();
-        SimpleFragment2 fragment = new SimpleFragment2();
+        SimpleFragment4 fragment = new SimpleFragment4();
         fragment.setArguments(args);
         return fragment;
     }
@@ -23,9 +25,9 @@ public class SimpleFragment2 extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View view = inflater.inflate( R.layout.simple_fragment1,container,false );
+       View view = inflater.inflate( R.layout.simple_fragment4,container,false );
        mTextView = view.findViewById( R.id.fragment );
-        mTextView.setText("fragment2");
+        mTextView.setText("fragment4");
        return view;
     }
 }
