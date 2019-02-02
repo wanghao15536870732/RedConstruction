@@ -8,19 +8,19 @@ public class newses {
 
     private static final Random RANDOM = new Random();
 
-    public static String getRandomCheeseDrawable() {
+    public static int getRandomCheeseDrawable() {
         switch (RANDOM.nextInt( 5 )) {
             default:
             case 0:
-                return "http://pmb04cwi5.bkt.clouddn.com/news_1.jpg";
+                return R.drawable.news_1;
             case 1:
-                return "http://pmb04cwi5.bkt.clouddn.com/news_2.jpg";
+                return R.drawable.news_2;
             case 2:
-                return "http://pmb04cwi5.bkt.clouddn.com/news_3.jpg";
+                return R.drawable.news_3;
             case 3:
-                return "http://pmb04cwi5.bkt.clouddn.com/news_4.jpg";
+                return R.drawable.news_4;
             case 4:
-                return "http://pmb04cwi5.bkt.clouddn.com/news_5.jpg";
+                return R.drawable.news_5;
         }
     }
 
