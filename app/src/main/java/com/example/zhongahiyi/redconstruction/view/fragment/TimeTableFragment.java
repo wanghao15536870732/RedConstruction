@@ -2,6 +2,7 @@ package com.example.zhongahiyi.redconstruction.view.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,7 +29,9 @@ import com.zhuangfei.timetable.TimetableView;
 import com.zhuangfei.timetable.listener.ISchedule;
 import com.zhuangfei.timetable.listener.IWeekView;
 import com.zhuangfei.timetable.listener.OnItemBuildAdapter;
+import com.zhuangfei.timetable.listener.OnSlideBuildAdapter;
 import com.zhuangfei.timetable.model.Schedule;
+import com.zhuangfei.timetable.model.ScheduleEnable;
 import com.zhuangfei.timetable.view.WeekView;
 
 import java.util.ArrayList;
@@ -124,6 +127,7 @@ public class TimeTableFragment extends Fragment implements View.OnClickListener{
                         //更新切换后的日期,从当前cur->切换的week
                         mTimetableView.onDateBuildListener()
                                 .onUpdateDate( cir,week );
+                        //课表切换周次
                         mTimetableView.changeWeekOnly( week );
                     }
                 } )
@@ -137,6 +141,8 @@ public class TimeTableFragment extends Fragment implements View.OnClickListener{
                 .showView();
         mTimetableView.curWeek(1)
                 .curTerm("大二下学期")
+                .maxSlideItem( 13 )
+                .monthWidthDp( 40 )
                 .callback( new ISchedule.OnItemClickListener() {
                     @Override
                     public void onItemClick(View v, List<Schedule> scheduleList) {
@@ -148,7 +154,7 @@ public class TimeTableFragment extends Fragment implements View.OnClickListener{
                     @Override
                     public void onLongClick(View v, int day, int start) {
                         Toast.makeText(getContext(),
-                                "长按:周" + day  + ",第" + start + "节",
+                                "当前节次为：第" + day  + "周的" + ",第" + start + "节",
                                 Toast.LENGTH_SHORT).show();
                     }
                 } )
@@ -182,7 +188,18 @@ public class TimeTableFragment extends Fragment implements View.OnClickListener{
                         }
                     }
                 })
+                .callback( new ISchedule.OnFlaglayoutClickListener() {
+                    @Override
+                    public void onFlaglayoutClick(int day, int start) {
+                        mTimetableView.hideDateView();
+                        Toast.makeText(getContext(),
+                                "点击了旗标:周" + (day + 1) + ",第" + start + "节",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                } )
                 .showView();
+        addColor( R.color.colorPrimary,R.color.app_course_textcolor_blue,R.color.theme_yellow );
+        showTime();  //显示时间
     }
 
     /**
@@ -266,5 +283,90 @@ public class TimeTableFragment extends Fragment implements View.OnClickListener{
     public void showWeekView(){
         mWeekView.isShow(true);
         titleTextView.setTextColor(getResources().getColor(R.color.app_red));
+    }
+
+    //删除课程
+
+    protected void deleteSubject(){
+        int size = mTimetableView.dataSource().size();
+        int pos = (int) (Math.random() * size);
+        if(size > 0){
+            mTimetableView.dataSource().remove( pos );
+            mTimetableView.updateView();
+        }
+    }
+
+    //添加课程
+    protected void addSubjext(){
+        List<Schedule> dataSource = mTimetableView.dataSource();
+        int size = dataSource.size();
+        if(size > 0){
+            Schedule schedule = dataSource.get( 0 );
+            dataSource.add( schedule );
+            mTimetableView.updateView();
+        }
+    }
+
+    //非本周课程显示与隐藏
+    protected void hideNonThisWeek(){
+        mTimetableView.isShowNotCurWeek(false).updateView();
+    }
+
+    //显示非本周课程
+    protected void showNonThisWeek(){
+        mTimetableView.isShowNotCurWeek(true).updateView();
+    }
+
+
+    /**
+     * 显示时间
+     */
+    protected void showTime() {
+        String[] times = new String[]{
+                "8:00", "9:00", "10:10", "11:00",
+                "15:00", "16:00", "17:00", "18:00",
+                "19:30", "20:30","21:30","22:30"
+        };
+        OnSlideBuildAdapter listener= (OnSlideBuildAdapter) mTimetableView.onSlideBuildListener();
+        listener.setTimes(times)
+                .setTimeTextColor( Color.BLACK);
+        mTimetableView.updateSlideView();
+    }
+
+    /**
+     * 隐藏时间
+     */
+    protected void hideTime() {
+        mTimetableView.callback((ISchedule.OnSlideBuildListener) null);
+        mTimetableView.updateSlideView();
+    }
+
+    /**
+     * 隐藏周末
+     */
+    private void hideWeekends() {
+        mTimetableView.isShowWeekends(false).updateView();
+    }
+
+    /**
+     * 显示周末
+     */
+    private void showWeekends() {
+        mTimetableView.isShowWeekends(true).updateView();
+    }
+
+    /**
+     * 修改侧边栏背景
+     */
+    protected void modifySlideBgColor(int color) {
+        OnSlideBuildAdapter listener = (OnSlideBuildAdapter) mTimetableView.onSlideBuildListener();
+        listener.setBackground(color);
+        mTimetableView.updateSlideView();
+    }
+
+    //颜色池添加颜色
+    public void addColor(int... colors){
+        mTimetableView.colorPool().add(colors);
+        mTimetableView.updateView();
     }
 }

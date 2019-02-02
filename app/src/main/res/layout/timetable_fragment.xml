@@ -11,7 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        />
+        android:textSize="16sp"
+        android:text="党课课表"
+        android:textColor="@color/colorPrimary"/>
 
     <com.zhuangfei.timetable.view.WeekView
         android:id="@+id/id_weekView"

@@ -3,16 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_night"
-        android:title="@string/menu_night_mode"
+        android:title="@string/menu_simple"
         app:showAsAction="never">
-        <menu>
-            <group
-                android:checkableBehavior="single">
-                <item
-                    android:id="@+id/menu_night_mode_system"
-                    android:title="@string/menu_night_mode_system" />
-            </group>
-        </menu>
     </item>
-
 </menu>

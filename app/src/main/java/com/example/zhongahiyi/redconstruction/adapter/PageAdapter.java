@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.zhongahiyi.redconstruction.view.fragment.SimpleFragment2;
+import com.example.zhongahiyi.redconstruction.view.fragment.NewsFragment;
 import com.example.zhongahiyi.redconstruction.view.fragment.SimpleFragment3;
 import com.example.zhongahiyi.redconstruction.view.fragment.SimpleFragment4;
 import com.example.zhongahiyi.redconstruction.view.fragment.SimpleFragment5;
@@ -28,7 +28,7 @@ public class PageAdapter extends FragmentPagerAdapter {
             case 0:
                 return TimeTableFragment.newInstance();
             case 1:
-                return SimpleFragment2.newInstance();
+                return NewsFragment.newInstance();
             case 2:
                 return SimpleFragment3.newInstance();
             case 3:

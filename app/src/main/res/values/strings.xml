@@ -4,8 +4,9 @@
     <string name="nav_main">首页</string>
     <string name="nav_message">消息</string>
     <string name="nav_friend">朋友圈</string>
-    <string name="menu_night_mode">白天模式</string>
+    <string name="menu_simple">设置</string>
     <string name="menu_night_mode_system">跟随系统</string>
     <string name="navigation_drawer_open">打开</string>
     <string name="navigation_drawer_close">关闭</string>
+    <string name="news_content">12月11日，新疆军区某训练基地举行2017年度入伍新兵授衔仪式暨宣誓大会。大会上，基地常委及新训办领导逐个为78名新兵佩戴上肩章、领章、臂章，新战友个个精神抖擞、意气风发，面对军旗庄严宣誓，正式成为一名中国人民解放军军人。经过两个多月的教育培养和艰苦训练，他们完成了入伍阶段军事训练所要求的单个军人队列动作、战术基础、实打实投等内容，实现了从地方青年到合格军人的转变。</string>
 </resources>
