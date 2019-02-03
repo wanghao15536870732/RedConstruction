@@ -9,4 +9,7 @@
     <string name="navigation_drawer_open">打开</string>
     <string name="navigation_drawer_close">关闭</string>
     <string name="news_content">12月11日，新疆军区某训练基地举行2017年度入伍新兵授衔仪式暨宣誓大会。大会上，基地常委及新训办领导逐个为78名新兵佩戴上肩章、领章、臂章，新战友个个精神抖擞、意气风发，面对军旗庄严宣誓，正式成为一名中国人民解放军军人。经过两个多月的教育培养和艰苦训练，他们完成了入伍阶段军事训练所要求的单个军人队列动作、战术基础、实打实投等内容，实现了从地方青年到合格军人的转变。</string>
+    <string name="cancel">取消</string>
+    <string name="change_album">选择照片</string>
+    <string name="change_take">拍照</string>
 </resources>
