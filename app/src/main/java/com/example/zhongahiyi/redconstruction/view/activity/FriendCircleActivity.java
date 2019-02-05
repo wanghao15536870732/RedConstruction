@@ -1,10 +1,17 @@
 package com.example.zhongahiyi.redconstruction.view.activity;
 
+import android.os.Build;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.example.zhongahiyi.redconstruction.R;
 import com.example.zhongahiyi.redconstruction.adapter.NineGridAdapter;
 import com.example.zhongahiyi.redconstruction.bean.NineGridModel;
@@ -18,11 +25,18 @@ public class FriendCircleActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private NineGridAdapter mAdapter;
+    private ImageView mImageView,imageView;
+    private CollapsingToolbarLayout mCollapsingToolbarLayout;
+    private AppBarLayout mAppBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_friend_circle );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags( WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);//设置透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);//设置透明导航栏
+        }
         initListData();
         initView();
     }
@@ -35,6 +49,27 @@ public class FriendCircleActivity extends AppCompatActivity {
         mAdapter = new NineGridAdapter(this);
         mAdapter.setList(mList);
         mRecyclerView.setAdapter(mAdapter);
+
+        mImageView = (ImageView) findViewById( R.id.imageView_friend );
+        imageView = (ImageView) findViewById( R.id.image_view_friend );
+        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById( R.id.collapsing_friend );
+        mAppBarLayout = (AppBarLayout) findViewById( R.id.appBarLayout_friend );
+        mCollapsingToolbarLayout.setTitle( " " );
+        mCollapsingToolbarLayout.setExpandedTitleMarginStart( 0 );
+        mAppBarLayout.addOnOffsetChangedListener( new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if(Math.abs( verticalOffset ) >= mAppBarLayout.getTotalScrollRange()){
+                    mCollapsingToolbarLayout.setTitle( "朋友圈" );
+                }else {
+                    mCollapsingToolbarLayout.setTitle( " " );
+                }
+            }
+        } );
+        Glide.with( this ).load( "http://pmb04cwi5.bkt.clouddn.com/image.jpg" )
+                .asBitmap().into( mImageView );
+        Glide.with( this ).load( "http://pmb04cwi5.bkt.clouddn.com/back.png" )
+                .asBitmap().into( imageView );
     }
 
 
