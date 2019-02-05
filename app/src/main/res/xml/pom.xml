@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependency xmlns:android="http://schemas.android.com/apk/res/android">
+    <groupId>in.srain.cube</groupId>
+    <artifactId>ultra-ptr</artifactId>
+    <type>aar</type>
+    <!-- or apklib format, if you want -->
+    <!-- <type>apklib</type> -->
+    <version>1.0.11</version>
+</dependency>

@@ -26,6 +26,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,8 +44,7 @@ import java.util.ArrayList;
 
 import devlight.io.library.ntb.NavigationTabBar;
 
-public class MainActivity extends AppCompatActivity implements
-        NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static final int TAKE_PHOTO = 1;
     public static final int CHOOSE_PHOTO = 2;
@@ -52,16 +52,14 @@ public class MainActivity extends AppCompatActivity implements
     private Uri imageuri;
     private ImageView avatar;
 
+    private NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
-
         Toolbar toolbar =  (Toolbar) findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
-
         mDrawerLayout = (DrawerLayout) findViewById( R.id.drawer_layout );
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,mDrawerLayout,
                 toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -73,8 +71,34 @@ public class MainActivity extends AppCompatActivity implements
         actionBar.setHomeAsUpIndicator( R.drawable.ic_menu );
         actionBar.setDisplayHomeAsUpEnabled( true );
         actionBar.setHomeButtonEnabled( true);
-        NavigationView navigationView = (NavigationView) findViewById( R.id.nav_view );
+        navigationView = (NavigationView) findViewById( R.id.nav_view );
         View headerView = navigationView.getHeaderView( 0 );
+        navigationView.setCheckedItem( R.id.nav_home );
+        navigationView.setNavigationItemSelectedListener( new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                //如果已经拉到左边，则关闭
+                if(mDrawerLayout.isDrawerOpen( Gravity.LEFT )){
+                    mDrawerLayout.closeDrawers( );
+                }
+                switch (item.getItemId()){
+                    case R.id.nav_home:
+                        mDrawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_messages:
+                        startActivity( new Intent( MainActivity.this,MessageActivity.class ) );
+                        mDrawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_friends:
+                        startActivity( new Intent( MainActivity.this,FriendCircleActivity.class ) );
+                        mDrawerLayout.closeDrawers();
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        } );
         avatar = (ImageView) headerView.findViewById( R.id.nav_circle_image);
         avatar.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -233,7 +257,10 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            //菜单栏点击事件
+            //actionBar的单击事件
+            case R.id.action_night:
+//                startActivity( new Intent( this,FriendCircleActivity.class));
+                break;
         }
         return super.onOptionsItemSelected( item );
     }
@@ -247,12 +274,8 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        mDrawerLayout.closeDrawer( GravityCompat.START);
-        return true;
-    }
+
+
 
     @Override
     public void onClick(View v) {
