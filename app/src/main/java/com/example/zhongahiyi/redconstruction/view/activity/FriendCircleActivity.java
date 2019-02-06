@@ -1,5 +1,6 @@
 package com.example.zhongahiyi.redconstruction.view.activity;
 
+import android.media.Image;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -35,7 +36,7 @@ public class FriendCircleActivity extends AppCompatActivity {
         setContentView( R.layout.activity_friend_circle );
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags( WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);//设置透明状态栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);//设置透明导航栏
+           getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);//设置透明导航栏
         }
         initListData();
         initView();
@@ -61,15 +62,15 @@ public class FriendCircleActivity extends AppCompatActivity {
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if(Math.abs( verticalOffset ) >= mAppBarLayout.getTotalScrollRange()){
                     mCollapsingToolbarLayout.setTitle( "朋友圈" );
+                    imageView.setImageResource( R.drawable.ic_backs );
                 }else {
                     mCollapsingToolbarLayout.setTitle( " " );
+                    imageView.setImageResource( R.drawable.ic_back);
                 }
             }
         } );
         Glide.with( this ).load( "http://pmb04cwi5.bkt.clouddn.com/image.jpg" )
                 .asBitmap().into( mImageView );
-        Glide.with( this ).load( "http://pmb04cwi5.bkt.clouddn.com/back.png" )
-                .asBitmap().into( imageView );
     }
 
 
@@ -114,7 +115,7 @@ public class FriendCircleActivity extends AppCompatActivity {
         mList.add(model4);
 
         NineGridModel model5 = new NineGridModel();
-        for (int i = 0; i < mUrls.length; i++) {
+        for (int i = 6; i < mUrls.length; i++) {
             model5.urlList.add(mUrls[i]);
         }
         model5.isShowAll = true;//显示全部图片
