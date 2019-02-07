@@ -1,53 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout_friend"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_friend"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentScrim="@color/white_bk"
-            app:expandedTitleMarginTop="8dp"
+            android:layout_height="400dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:statusBarScrim="@color/white_bk">
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/colorPrimary"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="64dp">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_collapseMode="pin">
+                android:layout_height="match_parent"
+                app:layout_collapseMode="pin"
+                android:fitsSystemWindows="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white_bk"
                     android:orientation="vertical"
+                    app:layout_collapseMode="parallax"
+                    android:fitsSystemWindows="true"
                     android:paddingBottom="50dp">
 
                     <ImageView
                         android:id="@+id/imageView_friend"
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="420dp"
                         android:scaleType="centerCrop"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:fitsSystemWindows="true"/>
                 </LinearLayout>
 
                 <FrameLayout
@@ -58,13 +57,18 @@
                     android:padding="2dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    >
+                    android:fitsSystemWindows="true">
 
                     <ImageView
+                        android:id="@+id/avatar_mine"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/learn"/>
+                        android:src="@drawable/learn"
+                        android:elevation="16dp"
+                        tools:targetApi="lollipop"
+                        android:fitsSystemWindows="true"/>
                 </FrameLayout>
+
             </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.Toolbar
@@ -76,7 +80,7 @@
                 app:layout_collapseMode="pin">
 
                 <ImageView
-                    android:id="@+id/image_view_friend"
+                    android:id="@+id/view_back"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@drawable/ic_back" />
@@ -84,6 +88,13 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/main_actions_menu"

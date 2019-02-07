@@ -1,6 +1,5 @@
 package com.example.zhongahiyi.redconstruction.view.activity;
 
-import android.media.Image;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -8,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.zhongahiyi.redconstruction.R;
@@ -20,15 +19,16 @@ import com.example.zhongahiyi.redconstruction.bean.NineGridModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendCircleActivity extends AppCompatActivity {
+public class FriendCircleActivity extends AppCompatActivity implements View.OnClickListener{
 
     private List<NineGridModel> mList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private NineGridAdapter mAdapter;
-    private ImageView mImageView,imageView;
+    private ImageView mImageView,imageView,avatar,ic_back;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private AppBarLayout mAppBarLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,10 @@ public class FriendCircleActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         mImageView = (ImageView) findViewById( R.id.imageView_friend );
-        imageView = (ImageView) findViewById( R.id.image_view_friend );
+        imageView = (ImageView) findViewById( R.id.view_back );
+        avatar = (ImageView) findViewById( R.id.avatar_mine );
+        ic_back = (ImageView) findViewById( R.id.view_back );
+        ic_back.setOnClickListener( this );
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById( R.id.collapsing_friend );
         mAppBarLayout = (AppBarLayout) findViewById( R.id.appBarLayout_friend );
         mCollapsingToolbarLayout.setTitle( " " );
@@ -71,6 +74,9 @@ public class FriendCircleActivity extends AppCompatActivity {
         } );
         Glide.with( this ).load( "http://pmb04cwi5.bkt.clouddn.com/image.jpg" )
                 .asBitmap().into( mImageView );
+        Glide.with( this ).load( "http://pmb04cwi5.bkt.clouddn.com/uri.jpg" )
+                .asBitmap().into( avatar );
+
     }
 
 
@@ -97,15 +103,18 @@ public class FriendCircleActivity extends AppCompatActivity {
     private void initListData() {
         NineGridModel model1 = new NineGridModel();
         model1.urlList.add(mUrls[0]);
+        model1.setName( "水星记" );
+        model1.setAvatar( "http://pmb04cwi5.bkt.clouddn.com/uri.jpg" );
+        model1.setTime( "刚刚" );
         mList.add(model1);
 
         NineGridModel model2 = new NineGridModel();
         model2.urlList.add(mUrls[4]);
         mList.add(model2);
-//
-//        NineGridTestModel model3 = new NineGridTestModel();
-//        model3.urlList.add(mUrls[2]);
-//        mList.add(model3);
+
+        NineGridModel model3 = new NineGridModel();
+        model3.urlList.add(mUrls[2]);
+        mList.add(model3);
 
         NineGridModel model4 = new NineGridModel();
         for (int i = 0; i < mUrls.length; i++) {
@@ -138,5 +147,16 @@ public class FriendCircleActivity extends AppCompatActivity {
             model8.urlList.add(mUrls[i]);
         }
         mList.add(model8);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.view_back:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 }

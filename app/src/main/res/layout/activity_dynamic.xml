@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="0dp">
+
+            <RelativeLayout
+                android:id="@+id/toolbar_dynamic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp">
+
+                <ImageView
+                    android:id="@+id/toolbar_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_backs"
+                    android:layout_margin="10dp"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发表动态"
+                    android:textSize="18sp"
+                    android:layout_toEndOf="@+id/toolbar_back"
+                    android:layout_marginTop="12dp"/>
+
+                <Button
+                    android:id="@+id/toolbar_send"
+                    android:layout_width="70dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentEnd="true"
+                    android:text="发表"
+                    android:textSize="18sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/app_green"
+                    android:textColor="@color/white_bk"/>
+            </RelativeLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#00000000"
+                android:hint="你想要说些什么..."
+                android:gravity="top|left"
+                android:padding="10dp"
+                android:textSize="16sp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/dynamic_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:overScrollMode="never"/>  <!--滑动到边缘时无效果模式：-->
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

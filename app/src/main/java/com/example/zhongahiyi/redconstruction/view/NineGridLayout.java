@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.TimerTask;
 
 public abstract class NineGridLayout extends ViewGroup{
-    private static final float DEFUALT_SPACING = 3f;
+    private static final float DEFAULT_SPACING = 3f;
     private static final int MAX_COUNT = 9;
 
     protected Context mContext;
-    private float mSpacing = DEFUALT_SPACING;
+    private float mSpacing = DEFAULT_SPACING;
     private int mColumns;
     private int mRows;
     private int mTotalWidth;
@@ -41,7 +41,7 @@ public abstract class NineGridLayout extends ViewGroup{
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.NineGridLayout);
 
-        mSpacing = typedArray.getDimension(R.styleable.NineGridLayout_sapcing, DEFUALT_SPACING);
+        mSpacing = typedArray.getDimension(R.styleable.NineGridLayout_sapcing, DEFAULT_SPACING);
         typedArray.recycle();
         init(context);
     }

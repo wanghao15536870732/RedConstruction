@@ -39,7 +39,9 @@
         </provider>
 
         <activity android:name=".view.activity.FriendCircleActivity" />
-        <activity android:name=".view.activity.MessageActivity"/>
+        <activity android:name=".view.activity.MessageActivity" />
+        <activity android:name=".view.activity.ImageLoaders" />
+        <activity android:name=".view.activity.DynamicActivity"></activity>
     </application>
 
 </manifest>
