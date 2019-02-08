@@ -64,7 +64,6 @@
                 android:id="@+id/dynamic_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:overScrollMode="never"/>  <!--滑动到边缘时无效果模式：-->
         </LinearLayout>

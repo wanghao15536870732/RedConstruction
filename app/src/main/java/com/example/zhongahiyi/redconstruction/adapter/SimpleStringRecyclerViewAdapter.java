@@ -75,7 +75,6 @@ public class SimpleStringRecyclerViewAdapter
 
         Glide.with(holder.mImageView.getContext())
                 .load( newses.getRandomCheeseDrawable())
-                .fitCenter()
                 .into(holder.mImageView);
     }
 

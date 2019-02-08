@@ -1,5 +1,6 @@
 package com.example.zhongahiyi.redconstruction.view.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -10,12 +11,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-
 import com.bumptech.glide.Glide;
 import com.example.zhongahiyi.redconstruction.R;
 import com.example.zhongahiyi.redconstruction.adapter.NineGridAdapter;
 import com.example.zhongahiyi.redconstruction.bean.NineGridModel;
-
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,10 @@ public class FriendCircleActivity extends AppCompatActivity implements View.OnCl
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private AppBarLayout mAppBarLayout;
 
+    /*与悬浮按钮相关*/
+    private FloatingActionsMenu mFloatingActionsMenu;
+    private FloatingActionButton mAddDynamic,mScrollToUp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,7 @@ public class FriendCircleActivity extends AppCompatActivity implements View.OnCl
         }
         initListData();
         initView();
+        initFloatButton();
     }
 
     private void initView() {
@@ -73,10 +79,21 @@ public class FriendCircleActivity extends AppCompatActivity implements View.OnCl
             }
         } );
         Glide.with( this ).load( "http://pmb04cwi5.bkt.clouddn.com/image.jpg" )
-                .asBitmap().into( mImageView );
+                .into( mImageView );
         Glide.with( this ).load( "http://pmb04cwi5.bkt.clouddn.com/uri.jpg" )
-                .asBitmap().into( avatar );
+                .into( avatar );
+    }
 
+    private void initFloatButton(){
+        mFloatingActionsMenu = (FloatingActionsMenu) findViewById( R.id.main_actions_menu );
+        mAddDynamic = (FloatingActionButton) findViewById( R.id.add_dynamic );
+        mScrollToUp = (FloatingActionButton) findViewById( R.id.scroll_to_up );
+        mAddDynamic.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(FriendCircleActivity.this,DynamicActivity.class ));
+            }
+        } );
     }
 
 

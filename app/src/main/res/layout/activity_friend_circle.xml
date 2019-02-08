@@ -113,7 +113,7 @@
         fab:fab_labelStyle="@style/menu_labels_style">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/change_voice"
+            android:id="@+id/scroll_to_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_addButtonColorNormal="@color/fab_color"
@@ -127,7 +127,7 @@
 
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_text_to_voice"
+            android:id="@+id/add_dynamic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_addButtonColorNormal="@color/fab_color"

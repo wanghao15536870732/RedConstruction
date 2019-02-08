@@ -38,7 +38,7 @@ public class NewsDetailActivity extends AppCompatActivity {
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(newsTitle);
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-        Glide.with(this).load( newses.getRandomCheeseDrawable()).centerCrop().into(imageView);
+        Glide.with(this).load( newses.getRandomCheeseDrawable()).into(imageView);
     }
 
     @Override
