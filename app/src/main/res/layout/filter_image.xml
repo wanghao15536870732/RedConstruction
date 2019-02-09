@@ -28,7 +28,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_delete_photo"/>
+                android:src="@drawable/delet_pic_1x"/>
         </LinearLayout>
 
         <TextView

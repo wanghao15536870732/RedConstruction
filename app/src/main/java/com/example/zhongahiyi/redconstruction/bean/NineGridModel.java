@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NineGridModel implements Serializable{
+import cn.bmob.v3.BmobObject;
+
+public class NineGridModel extends BmobObject implements Serializable{
 
     private static final long serialVersionUID = 2189052605715370758L;
 
