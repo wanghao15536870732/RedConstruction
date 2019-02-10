@@ -8,27 +8,42 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.zhongahiyi.redconstruction.R;
 import com.example.zhongahiyi.redconstruction.adapter.FullyGridLayoutManager;
 import com.example.zhongahiyi.redconstruction.adapter.GridImageAdapter;
+import com.example.zhongahiyi.redconstruction.bean.NineGridModel;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DynamicActivity extends AppCompatActivity {
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UploadBatchListener;
 
+public class DynamicActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private final static String TAG = "DynamicActivity";
     private RecyclerView recyclerView;
     private GridImageAdapter adapter;
     private List<LocalMedia> selectList = new ArrayList<>();
+    private String [] filepaths;
+    private List<String> mUriList = new ArrayList<>( );
     private int maxSelecNum = 9;
-    private int themeId;
-    private int chooseMode = PictureMimeType.ofAll();
+//    private int themeId;
+//    private int chooseMode = PictureMimeType.ofAll();
+    private Button send_btn;
+    private ImageView back_Btn;
+    private EditText mEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +74,7 @@ public class DynamicActivity extends AppCompatActivity {
                             //PictureSelector.create(MainActivity.this).themeStyle(themeId).externalPicturePreview(position, "/custom_file", selectList);
                             PictureSelector.create(DynamicActivity.this)
                                     .themeStyle(themeId)
+                                    .maxSelectNum( maxSelecNum )
                                     .openExternalPreview(position, selectList);
                             break;
                         case 2:
@@ -75,6 +91,11 @@ public class DynamicActivity extends AppCompatActivity {
                 }
             }
         } );
+        send_btn = (Button) findViewById( R.id.toolbar_send );
+        back_Btn = (ImageView) findViewById( R.id.toolbar_back );
+        mEditText = (EditText) findViewById( R.id.item_edit );
+        send_btn.setOnClickListener( this );
+        back_Btn.setOnClickListener( this );
     }
 
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
@@ -83,7 +104,7 @@ public class DynamicActivity extends AppCompatActivity {
             // 单独拍照
             PictureSelector.create(DynamicActivity.this)
                     .openGallery(PictureMimeType.ofAll())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
-                    .maxSelectNum(9)// 最大图片选择数量
+                    .maxSelectNum(maxSelecNum)// 最大图片选择数量
                     .minSelectNum(1)// 最小选择数量
                     .imageSpanCount(3)// 每行显示个数
                     .selectionMode(
@@ -137,6 +158,7 @@ public class DynamicActivity extends AppCompatActivity {
             }
         }
     }
+
     public String getPath() {
         String path = Environment.getExternalStorageDirectory() + "/Luban/image/";
         File file = new File(path);
@@ -144,5 +166,53 @@ public class DynamicActivity extends AppCompatActivity {
             return path;
         }
         return path;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.toolbar_send:
+                final NineGridModel nineGridModel = new NineGridModel();
+                nineGridModel.setContent(mEditText.getText().toString());
+                for (int i = 0; i < selectList.size(); i++) {
+                    mUriList.add( selectList.get( i ).getPath() );
+                }
+                nineGridModel.setUrlList( mUriList );
+                filepaths = (String [])mUriList.toArray(new String[mUriList.size()]);
+                nineGridModel.save( new SaveListener<String>() {
+                    @Override
+                    public void done(String s, BmobException e) {
+                        if (e == null){
+                            Toast.makeText(DynamicActivity.this, "添加数据成功，返回ObjectId为：" + s, Toast.LENGTH_SHORT ).show();
+                        }else {
+                            Toast.makeText( DynamicActivity.this, "创建数据失败," + e.getMessage(), Toast.LENGTH_SHORT ).show();
+                        }
+                    }
+                } );
+
+                BmobFile.uploadBatch( filepaths, new UploadBatchListener() {
+                    @Override
+                    public void onSuccess(List<BmobFile> list, List<String> list1) {
+                        if (list.size() == filepaths.length){
+                            //表示全部都上传成功
+                            Toast.makeText( DynamicActivity.this, "上传成功", Toast.LENGTH_SHORT ).show();
+                        }
+                    }
+
+                    @Override
+                    public void onProgress(int i, int i1, int i2, int i3) {
+
+                    }
+
+                    @Override
+                    public void onError(int statuscode, String errormsg) {
+                        Toast.makeText( DynamicActivity.this, "错误码：" + statuscode + "错误描述：" + errormsg, Toast.LENGTH_SHORT ).show();
+                    }
+                } );
+                break;
+            case R.id.toolbar_back:
+                finish();
+                break;
+        }
     }
 }

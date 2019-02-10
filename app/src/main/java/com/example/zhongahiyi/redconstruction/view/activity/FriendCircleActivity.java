@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
 import com.bumptech.glide.Glide;
 import com.example.zhongahiyi.redconstruction.R;
 import com.example.zhongahiyi.redconstruction.adapter.NineGridAdapter;
@@ -24,7 +26,7 @@ public class FriendCircleActivity extends AppCompatActivity implements View.OnCl
 
     private List<NineGridModel> mList = new ArrayList<>();
     private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
     private NineGridAdapter mAdapter;
     private ImageView mImageView,imageView,avatar,ic_back;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
@@ -51,12 +53,12 @@ public class FriendCircleActivity extends AppCompatActivity implements View.OnCl
     private void initView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setStackFromEnd( true );  //列表从底部开始展示
+        mLayoutManager.setReverseLayout( true );  //列表反转
         mRecyclerView.setLayoutManager(mLayoutManager);
-
         mAdapter = new NineGridAdapter(this);
         mAdapter.setList(mList);
         mRecyclerView.setAdapter(mAdapter);
-
         mImageView = (ImageView) findViewById( R.id.imageView_friend );
         imageView = (ImageView) findViewById( R.id.view_back );
         avatar = (ImageView) findViewById( R.id.avatar_mine );
