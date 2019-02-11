@@ -16,6 +16,27 @@ public class NineGridModel extends BmobObject implements Serializable{
 
     private String mAvatar, mContent, mName,mTime;
 
+    private ArrayList<Comment> comments = new ArrayList<>(); // 发布时间
+
+    public NineGridModel(){
+
+    }
+
+   public NineGridModel(String name,String avatar,String content,String time){
+       this.mName = name;
+       this.mAvatar = avatar;
+       this.mContent = content;
+       this.mTime = time;
+   }
+
+   public boolean hasComment(){
+       return comments.size() > 0;
+   }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
