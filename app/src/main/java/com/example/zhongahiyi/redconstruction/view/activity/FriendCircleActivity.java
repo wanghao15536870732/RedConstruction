@@ -8,21 +8,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.zhongahiyi.redconstruction.R;
 import com.example.zhongahiyi.redconstruction.adapter.NineGridAdapter;
+import com.example.zhongahiyi.redconstruction.bean.Comment;
 import com.example.zhongahiyi.redconstruction.bean.NineGridModel;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendCircleActivity extends AppCompatActivity implements View.OnClickListener{
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.util.V;
+
+public class FriendCircleActivity extends AppCompatActivity implements
+        View.OnClickListener{
 
     private List<NineGridModel> mList = new ArrayList<>();
     private RecyclerView mRecyclerView;
@@ -31,6 +40,7 @@ public class FriendCircleActivity extends AppCompatActivity implements View.OnCl
     private ImageView mImageView,imageView,avatar,ic_back;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private AppBarLayout mAppBarLayout;
+    private View mCommentView;
 
     /*与悬浮按钮相关*/
     private FloatingActionsMenu mFloatingActionsMenu;
@@ -58,11 +68,38 @@ public class FriendCircleActivity extends AppCompatActivity implements View.OnCl
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new NineGridAdapter(this);
         mAdapter.setList(mList);
+        mAdapter.setCommentListener( new NineGridAdapter.OnCommentListener() {
+            @Override
+            public void onComment(final int position) {
+                mCommentView.setVisibility( View.VISIBLE );
+                mCommentView.findViewById( R.id.submit ).setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EditText et = (EditText) mCommentView.findViewById( R.id.edit );
+                        String s = et.getText().toString();
+
+                        if (!TextUtils.isEmpty( s )){
+                            Comment comment = new Comment( s );
+                            comment.save( new SaveListener<String>() {
+                                @Override
+                                public void done(String s, BmobException e) {
+
+                                }
+                            } );
+                            mList.get( position ).getComments().add( comment);
+                            et.setText("");
+                            mCommentView.setVisibility( View.GONE );
+                        }
+                    }
+                } );
+            }
+        } );
         mRecyclerView.setAdapter(mAdapter);
         mImageView = (ImageView) findViewById( R.id.imageView_friend );
         imageView = (ImageView) findViewById( R.id.view_back );
         avatar = (ImageView) findViewById( R.id.avatar_mine );
         ic_back = (ImageView) findViewById( R.id.view_back );
+        mCommentView = findViewById( R.id.comment_view );
         ic_back.setOnClickListener( this );
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById( R.id.collapsing_friend );
         mAppBarLayout = (AppBarLayout) findViewById( R.id.appBarLayout_friend );

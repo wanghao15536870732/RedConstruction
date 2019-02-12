@@ -89,11 +89,58 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:id="@+id/comment_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="visible">
+
+            <EditText
+                android:id="@+id/edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dip"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:maxLength="2000"
+                android:paddingLeft="3dp"
+                android:textSize="16sp"
+                />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="65dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white_bk"
+                android:textSize="16sp"
+                android:text="发送"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
@@ -110,7 +157,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
         android:layout_gravity="bottom|right|end"
-        fab:fab_labelStyle="@style/menu_labels_style">
+        fab:fab_labelStyle="@style/menu_labels_style"
+        android:visibility="gone">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/scroll_to_up"

@@ -18,6 +18,7 @@ public class NineGridModel extends BmobObject implements Serializable{
 
     private ArrayList<Comment> comments = new ArrayList<>(); // 发布时间
 
+
     public NineGridModel(){
 
     }

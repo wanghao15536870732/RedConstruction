@@ -10,4 +10,5 @@
     <color name="white">#FFFFFF</color><!--白色 -->
     <color name="fab_color">#80738ffe</color>
     <color name="color_f6">#f6f6f6</color>
+    <color name="colorCommentLayoutBg">#999999</color>
 </resources>
