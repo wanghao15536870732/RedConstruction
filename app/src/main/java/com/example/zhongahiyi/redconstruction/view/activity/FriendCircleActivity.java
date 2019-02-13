@@ -67,6 +67,7 @@ public class FriendCircleActivity extends AppCompatActivity implements
         mLayoutManager.setReverseLayout( true );  //列表反转
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new NineGridAdapter(this);
+        mCommentView = findViewById( R.id.comment_view );
         mAdapter.setList(mList);
         mAdapter.setCommentListener( new NineGridAdapter.OnCommentListener() {
             @Override
@@ -99,7 +100,6 @@ public class FriendCircleActivity extends AppCompatActivity implements
         imageView = (ImageView) findViewById( R.id.view_back );
         avatar = (ImageView) findViewById( R.id.avatar_mine );
         ic_back = (ImageView) findViewById( R.id.view_back );
-        mCommentView = findViewById( R.id.comment_view );
         ic_back.setOnClickListener( this );
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById( R.id.collapsing_friend );
         mAppBarLayout = (AppBarLayout) findViewById( R.id.appBarLayout_friend );

@@ -109,7 +109,7 @@
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
             android:layout_alignParentBottom="true"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <EditText
                 android:id="@+id/edit"

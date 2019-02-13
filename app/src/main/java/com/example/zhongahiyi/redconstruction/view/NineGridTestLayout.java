@@ -1,15 +1,20 @@
 package com.example.zhongahiyi.redconstruction.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
+import com.SuperKotlin.pictureviewer.ImagePagerActivity;
+import com.example.zhongahiyi.redconstruction.R;
 import com.example.zhongahiyi.redconstruction.utils.ImageLoaderUtil;
+import com.SuperKotlin.pictureviewer.PictureConfig;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NineGridTestLayout  extends NineGridLayout{
@@ -72,6 +77,14 @@ public class NineGridTestLayout  extends NineGridLayout{
 
     @Override
     protected void onClickImage(int i, String url, List<String> urlList) {
+        PictureConfig config = new PictureConfig.Builder()
+                .setListData( (ArrayList<String>) urlList ) //图片数据List<String> list
+                .setPosition( i ) //图片下标（从第position张图片开始浏览）
+                .setDownloadPath( "pictureviewer" ) //图片下载文件夹地址
+                .needDownload( true ) //是否支持图片下载
+                .setPlacrHolder( R.drawable.banner_default) //占位符图片（图片加载完成前显示的资源图片，来源drawable或者mipmap）
+                .build();
+        ImagePagerActivity.startActivity(mContext,config);
         Toast.makeText(mContext, "点击了图片" + url, Toast.LENGTH_SHORT).show();
     }
 }

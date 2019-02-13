@@ -24,7 +24,7 @@ import java.util.List;
 import cn.bmob.v3.util.V;
 
 
-public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHolder> implements View.OnClickListener{
+public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHolder> {
 
     private Context mContext;
     private List<NineGridModel> mList;
@@ -80,18 +80,19 @@ public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHo
                 showMore( v );
             }
         } );
-        comment.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCommentListener != null) {
-                    mCommentListener.onComment( position );
-                    if (mMorePopupWindow != null && mMorePopupWindow.isShowing()) {
-                        mMorePopupWindow.dismiss();
+        if (comment != null){
+            comment.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mCommentListener != null) {
+                        mCommentListener.onComment( position );
+                        if (mMorePopupWindow != null && mMorePopupWindow.isShowing()) {
+                            mMorePopupWindow.dismiss();
+                        }
                     }
                 }
-            }
-        } );
-
+            } );
+        }
     }
 
     @Override
@@ -155,7 +156,7 @@ public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHo
         return list.size();
     }
 
-    //弹出评论输入框
+    //弹出赞跟评论框
     private void showMore(View moreBtnview){
         if (mMorePopupWindow == null){
             LayoutInflater li = (LayoutInflater) mContext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
@@ -183,17 +184,6 @@ public class NineGridAdapter extends RecyclerView.Adapter<NineGridAdapter.ViewHo
 
             mMorePopupWindow.showAsDropDown( moreBtnview,-mShowMorePopupWindowWidth,
                     -(mShowMorePopupWindowHeight + heightMoreBtnView) / 2);
-        }
-    }
-
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.more_btn:
-                showMore(v);
-                break;
         }
     }
 }
