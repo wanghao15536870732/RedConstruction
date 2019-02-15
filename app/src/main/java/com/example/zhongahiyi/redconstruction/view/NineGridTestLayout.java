@@ -72,7 +72,7 @@ public class NineGridTestLayout  extends NineGridLayout{
 
     @Override
     protected void displayImage(RatioImageView imageView, String url) {
-        ImageLoaderUtil.getImageLoader(mContext).displayImage(url, imageView, ImageLoaderUtil.getPhotoImageOption());
+        ImageLoaderUtil.getImageLoader( mContext ).displayImage( url, imageView, ImageLoaderUtil.getPhotoImageOption() );
     }
 
     @Override
@@ -82,9 +82,8 @@ public class NineGridTestLayout  extends NineGridLayout{
                 .setPosition( i ) //图片下标（从第position张图片开始浏览）
                 .setDownloadPath( "pictureviewer" ) //图片下载文件夹地址
                 .needDownload( true ) //是否支持图片下载
-                .setPlacrHolder( R.drawable.banner_default) //占位符图片（图片加载完成前显示的资源图片，来源drawable或者mipmap）
+                .setPlacrHolder( R.drawable.banner_loading) //占位符图片（图片加载完成前显示的资源图片，来源drawable或者mipmap）
                 .build();
         ImagePagerActivity.startActivity(mContext,config);
-        Toast.makeText(mContext, "点击了图片" + url, Toast.LENGTH_SHORT).show();
     }
 }
