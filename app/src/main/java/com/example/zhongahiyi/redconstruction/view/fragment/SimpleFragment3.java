@@ -26,8 +26,6 @@ public class SimpleFragment3 extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        View view = inflater.inflate( R.layout.simple_fragment3,container,false );
-       mTextView = view.findViewById( R.id.fragment );
-        mTextView.setText("fragment3");
        return view;
     }
 }

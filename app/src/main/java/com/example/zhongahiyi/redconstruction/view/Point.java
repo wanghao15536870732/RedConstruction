@@ -59,4 +59,18 @@ public class Point {
     public void setY(float y) {
         this.y = y;
     }
+
+    /**
+     * 判断九宫格中的点是否可以进行连线
+     */
+    public boolean isWith(Point a,float moveX,float moveY,float radius){
+        float result = (float)Math.sqrt(
+                (a.getX() - moveX) * (a.getX() - moveX) +
+                        (a.getY() - moveY) * (a.getY() - moveY);
+        );
+        if (result < 5 * radius / 4){
+            return true;
+        }
+        return false;
+    }
 }
