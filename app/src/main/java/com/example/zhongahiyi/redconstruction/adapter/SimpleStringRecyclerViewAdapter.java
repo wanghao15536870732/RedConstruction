@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.zhongahiyi.redconstruction.R;
-import com.example.zhongahiyi.redconstruction.bean.newses;
+import com.example.zhongahiyi.redconstruction.bean.NewsGson;
 import com.example.zhongahiyi.redconstruction.view.activity.NewsDetailActivity;
 
 import java.util.List;
@@ -74,7 +74,7 @@ public class SimpleStringRecyclerViewAdapter
         });
 
         Glide.with(holder.mImageView.getContext())
-                .load( newses.getRandomCheeseDrawable())
+                .load( NewsGson.getRandomCheeseDrawable())
                 .into(holder.mImageView);
     }
 

@@ -12,41 +12,44 @@ import android.view.ViewGroup;
 
 import com.example.zhongahiyi.redconstruction.R;
 import com.example.zhongahiyi.redconstruction.adapter.SimpleStringRecyclerViewAdapter;
-import com.example.zhongahiyi.redconstruction.bean.newses;
+import com.example.zhongahiyi.redconstruction.bean.NewsGson;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class NewsFragment extends Fragment{
+public class NewsFragment extends Fragment {
 
 
-    public static NewsFragment newInstance(){
+    public static NewsFragment newInstance() {
         Bundle args = new Bundle();
         NewsFragment fragment = new NewsFragment();
-        fragment.setArguments(args);
+        fragment.setArguments( args );
         return fragment;
+    }
+
+    public interface ApiService{
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View view = inflater.inflate( R.layout.news_fragment,container,false );
-        RecyclerView recyclerView = view.findViewById( R.id.recyclerView );
+        View view = inflater.inflate( R.layout.news_fragment, container, false );
+        RecyclerView recyclerView = view.findViewById( R.id.recyclerView_news );
         recyclerView.setLayoutManager( new LinearLayoutManager( recyclerView.getContext() ) );
         recyclerView.setAdapter( new SimpleStringRecyclerViewAdapter( getActivity(),
-                getRandomSublist( newses.sCheeseStrings,30)));
-       return view;
+                getRandomSublist( NewsGson.sCheeseStrings, 30 ) ) );
+        //添加边框
+        return view;
     }
 
     private List<String> getRandomSublist(String[] array, int amount) {
         ArrayList<String> list = new ArrayList<>( amount );
-        Random random  = new Random();
-        while (list.size() < amount){
-            list.add( array[random.nextInt(array.length)] );
+        Random random = new Random();
+        while (list.size() < amount) {
+            list.add( array[random.nextInt( array.length )] );
         }
         return list;
     }
-
-
 }

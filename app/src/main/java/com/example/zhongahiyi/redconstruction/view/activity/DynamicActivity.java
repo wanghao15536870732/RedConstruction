@@ -177,7 +177,6 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
                 for (int i = 0; i < selectList.size(); i++) {
                     mUriList.add( selectList.get( i ).getPath() );
                 }
-                nineGridModel.setUrlList( mUriList );
                 filepaths = (String [])mUriList.toArray(new String[mUriList.size()]);
                 nineGridModel.save( new SaveListener<String>() {
                     @Override
@@ -200,7 +199,7 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
                     }
 
                     @Override
-                    public void onProgress(int i, int i1, int i2, int i3) {
+                    public void onProgress(int curIndex, int curPercent, int total,int totalPercent) {
 
                     }
 

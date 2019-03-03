@@ -58,4 +58,15 @@ dependencies {
     implementation 'com.github.SuperKotlin:PictureViewer:1.0.1'
     //新版本
     implementation 'com.android.support:support-v4:27.1.1'
+
+    //rxjava
+    implementation 'com.squareup.retrofit2:retrofit-converters:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
+
+    //高级的recyclerview
+//    compile 'com.jude:easyrecyclerview:4.2.3'
 }

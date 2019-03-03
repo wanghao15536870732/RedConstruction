@@ -78,7 +78,6 @@ public class FriendCircleActivity extends AppCompatActivity implements
                     public void onClick(View v) {
                         EditText et = (EditText) mCommentView.findViewById( R.id.edit );
                         String s = et.getText().toString();
-
                         if (!TextUtils.isEmpty( s )){
                             Comment comment = new Comment( s );
                             comment.save( new SaveListener<String>() {
@@ -131,6 +130,12 @@ public class FriendCircleActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
                 startActivity( new Intent(FriendCircleActivity.this,DynamicActivity.class ));
+            }
+        } );
+        mScrollToUp.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mRecyclerView.scrollToPosition( 0 );
             }
         } );
     }

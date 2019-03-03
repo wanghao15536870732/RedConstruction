@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.zhongahiyi.redconstruction.R;
-import com.example.zhongahiyi.redconstruction.bean.newses;
+import com.example.zhongahiyi.redconstruction.bean.NewsGson;
 
 public class NewsDetailActivity extends AppCompatActivity {
 
@@ -38,7 +38,7 @@ public class NewsDetailActivity extends AppCompatActivity {
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(newsTitle);
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-        Glide.with(this).load( newses.getRandomCheeseDrawable()).into(imageView);
+        Glide.with(this).load( NewsGson.getRandomCheeseDrawable()).into(imageView);
     }
 
     @Override
